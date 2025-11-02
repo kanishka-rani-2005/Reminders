@@ -8,7 +8,7 @@ import requests
 def generate_speech(text, lang_code, output_path):
     ELEVEN_API_KEY = "sk_f69d64ab5822565596479fab3500a503cf72a50a133794ba"   # Replace safely
     MODEL_ID = "eleven_multilingual_v2"
-    VOICE_ID = "EXAVITQu4vr4xnSDxMaL"  # Multilingual voice
+    VOICE_ID = "DJDkcaY4POaxra3iaZ5b"  # Multilingual voice
 
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}"
 

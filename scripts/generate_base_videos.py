@@ -1,40 +1,138 @@
 import os
+import time
 import requests
-from pathlib import Path
 
-# ========= CONFIG =========
-HEYGEN_API_KEY = "sk_V2_hgu_kxLruCQ2C0a_mDsDfxQfiirKohMpJ26PXDz1q4P0YAo0"   # <-- Put your HeyGen API key here
-API_URL = "https://api.heygen.com/v2/video/generate"
+# ==========================================
+# CONFIGURATION
+# ==========================================
+HEYGEN_API_KEY = os.getenv("HEYGEN_API_KEY", "sk_V2_hgu_kxLruCQ2C0a_mDsDfxQfiirKohMpJ26PXDz1q4P0YAo0")
 
-BASE_DIR = Path("assets/base_videos")
-BASE_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR = "output/base_videos"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-HEADERS = {
-    "Authorization": f"Bearer {HEYGEN_API_KEY}",
-    "Content-Type": "application/json"
+AVATAR_ID = "Adriana_Business_Front_public"
+
+LANG_VOICE = {
+    "hindi": {"voice_id": "dcf69bbbab5b41f2b75b9f86316c06c5"},
+    "tamil": {"voice_id": "f37bfc7d0be8494c8fa103a4a47eed33"},
+    "telugu": {"voice_id": "8b06642340ad474e8d32b040928fe459"},
+    "kannada": {"voice_id": "7d7d4ebc1c164e71a0542ecab97fdb43"},
 }
 
-LANG_AUDIO = {
+# ==========================================
+# LONGEST NAME + BIGGEST EMI EXAMPLES
+# ==========================================
+CUSTOMER_EXAMPLE = {
     "hindi": {
-        "audio_asset_id": "f76c8f3256414b57b8a3f947bb31c179"
+        "customer_name": "KHAN MOHAMMED AHMAR AMAN TOHID",
+        "loan_number": "SF987654321",
+        "sanctioned_amount": "₹17,62,547",
+        "emi_amount": "₹72,183.00",
+        "emi_due": "05 नवम्बर 2025",
+        "account_last4": "4521",
+        "bank_ifsc": "HDFC0001234",
     },
     "tamil": {
-        "audio_asset_id": "def1b576e7d143839e37f4e197490e77"
+        "customer_name": "THAMIZHARASAN DHAMODHARAN DHAMODHARAN",
+        "loan_number": "SF546372819",
+        "sanctioned_amount": "₹17,62,547",
+        "emi_amount": "₹72,183.00",
+        "emi_due": "05 நவம்பர் 2025",
+        "account_last4": "3928",
+        "bank_ifsc": "ICIC0005678",
     },
     "telugu": {
-        "audio_asset_id": "b648ad812daa461db61243938be41afd"
+        "customer_name": "MEDIDA VEERA VENKATA SATYANARAYANA",
+        "loan_number": "SF234891002",
+        "sanctioned_amount": "₹17,62,547",
+        "emi_amount": "₹72,183.00",
+        "emi_due": "05 నవంబర్ 2025",
+        "account_last4": "9710",
+        "bank_ifsc": "SBI0007894",
     },
     "kannada": {
-        "audio_asset_id": "9fbc36bd9d404158b0644ab7ec9782b6"
-    }
+        "customer_name": "SURESH KORAGALL YANKAPPA KORAGALL",
+        "loan_number": "SF192837465",
+        "sanctioned_amount": "₹17,62,547",
+        "emi_amount": "₹72,183.00",
+        "emi_due": "05 ನವೆಂಬರ್ 2025",
+        "account_last4": "2845",
+        "bank_ifsc": "KKBK0004567",
+    },
 }
 
-AVATAR_ID = "Adriana_Business_Front_public"   
-VIDEO_DIMENSIONS = {"width": 1280, "height": 720}
+# ==========================================
+# LANGUAGE TEXTS (LOCALIZED)
+# ==========================================
 
+TEMPLATES = {
+    "hindi": """नमस्ते, मैं सारथी फाइनेंस से आपकी वित्तीय सहायक बोल रही हूँ।
 
-def generate_video(lang: str, asset_id: str):
-    """Generate video using an existing audio asset."""
+प्रिय {customer_name}, आपका लोन नंबर {loan_number} है, जिसकी स्वीकृत राशि {sanctioned_amount} है।
+आपकी मासिक ईएमआई {emi_amount} निर्धारित की गई है, जिसकी अगली देय तिथि {emi_due} है।
+
+आपका बैंक खाता, जिसका अंतिम चार अंक {account_last4} हैं, और IFSC कोड {bank_ifsc} है, से यह राशि स्वतः काटी जाएगी।
+कृपया सुनिश्चित करें कि आपके खाते में पर्याप्त धनराशि बनी रहे ताकि भुगतान में कोई रुकावट न हो।
+
+यदि भुगतान विलंबित होता है, तो ₹500 प्लस जीएसटी का शुल्क और 2% मासिक ब्याज जुड़ जाएगा।
+बार-बार देरी होने पर आपका क्रेडिट स्कोर प्रभावित हो सकता है।
+
+सारथी फाइनेंस पर भरोसा करने के लिए धन्यवाद — हम आपके हर वित्तीय कदम पर आपके साथ हैं।
+""",
+
+    "tamil": """வணக்கம், நான் சாரதி பைனான்ஸ் நிறுவனத்திலிருந்து உங்கள் நிதி உதவியாளர் பேசுகிறேன்.
+
+அன்பிற்கினிய {customer_name}, உங்கள் கடன் எண் {loan_number}, மொத்த தொகை {sanctioned_amount} ஆக அங்கீகரிக்கப்பட்டுள்ளது.
+உங்கள் மாத தவணை தொகை {emi_amount} ஆகும், அடுத்த கட்டணம் {emi_due} அன்று வரவுள்ளது.
+
+உங்கள் வங்கி கணக்கு ({account_last4}) மற்றும் IFSC {bank_ifsc} மூலமாக தொகை தானாக பிடிக்கப்படும்.
+தொகை குறைவாக இருந்தால் கட்டணம் தோல்வியடையும் என்பதால் போதுமான இருப்பு வைத்திருங்கள்.
+
+கட்டணம் தாமதமானால் ₹500 + வரி மற்றும் 2% மாத வட்டி கட்டணம் விதிக்கப்படும்.
+தொடர்ச்சியான தாமதம் உங்கள் கடன் மதிப்பெண் குறையக்கூடும்.
+
+சாரதி பைனான்ஸ் — உங்கள் நம்பிக்கைக்கு நன்றி. நாங்கள் எப்போதும் உங்களுடன் இருக்கிறோம்.
+""",
+
+    "telugu": """నమస్కారం, నేను సారథి ఫైనాన్స్ నుండి మీ ఆర్థిక సహాయకురాలిని.
+
+ప్రియమైన {customer_name}, మీ రుణ నంబర్ {loan_number}, మొత్తం రుణం {sanctioned_amount} మంజూరు చేయబడింది.
+మీ నెలవారీ EMI {emi_amount}, చెల్లింపు తేది {emi_due}.
+
+మీ బ్యాంక్ ఖాతా చివరి నాలుగు అంకెలు {account_last4}, IFSC {bank_ifsc} నుండి ఆటోమేటిక్‌గా డెబిట్ అవుతుంది.
+దయచేసి ఖాతాలో తగినంత నిధులు ఉంచండి.
+
+వాయిదా ఆలస్యం అయితే ₹500 మరియు GST చార్జ్ అలాగే 2% నెల వడ్డీ వర్తిస్తుంది.
+పునరావృతమైన ఆలస్యం మీ క్రెడిట్ స్కోర్‌పై ప్రభావం చూపుతుంది.
+
+సారథి ఫైనాన్స్‌పై నమ్మకానికి ధన్యవాదాలు — మీ ప్రతి ఆర్థిక అడుగులో మేము మీతో ఉంటాము.
+""",
+
+    "kannada": """ನಮಸ್ಕಾರ, ನಾನು ಸಾರಥಿ ಫೈನಾನ್ಸ್‌ನಿಂದ ನಿಮ್ಮ ಹಣಕಾಸು ಸಹಾಯಕಿಯಾಗಿ ಮಾತನಾಡುತ್ತಿದ್ದೇನೆ.
+
+ಪ್ರಿಯ {customer_name}, ನಿಮ್ಮ ಸಾಲ ಸಂಖ್ಯೆ {loan_number}, ಮಂಜೂರಾದ ಮೊತ್ತ {sanctioned_amount}.
+ನಿಮ್ಮ ಮಾಸಿಕ ಇಎಂಐ {emi_amount}, ಪಾವತಿ ದಿನಾಂಕ {emi_due} ಆಗಿದೆ.
+
+ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಖಾತೆ ({account_last4}) ಮತ್ತು IFSC ಕೋಡ್ {bank_ifsc} ಮೂಲಕ ಮೊತ್ತವನ್ನು ಸ್ವಯಂ ಕಟ್ ಮಾಡಲಾಗುತ್ತದೆ.
+ದಯವಿಟ್ಟು ಖಾತೆಯಲ್ಲಿ ಅಗತ್ಯವಿರುವ ಮೊತ್ತವನ್ನು ಇರಿಸಿ.
+
+ಪಾವತಿ ತಡವಾದರೆ ₹500 + ಜಿಎಸ್‌ಟಿ ಹಾಗೂ ಪ್ರತಿ ತಿಂಗಳು 2% ಬಡ್ಡಿ ವಿಧಿಸಲಾಗುತ್ತದೆ.
+ಮರುಮರು ತಡವಾದರೆ ನಿಮ್ಮ ಕ್ರೆಡಿಟ್ ಸ್ಕೋರ್ ಹಾನಿಯಾಗಬಹುದು.
+
+ಸಾರಥಿ ಫೈನಾನ್ಸ್ — ನಿಮ್ಮ ವಿಶ್ವಾಸಕ್ಕೆ ಧನ್ಯವಾದಗಳು. ನಾವು ಯಾವಾಗಲೂ ನಿಮ್ಮ ಜೊತೆಗಿದ್ದೇವೆ.
+""",
+}
+
+# ==========================================
+# CREATE VIDEO
+# ==========================================
+def generate_video(lang, text, voice_id):
+    url = "https://api.heygen.com/v2/video/generate"
+    headers = {
+        "Authorization": f"Bearer {HEYGEN_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
     payload = {
         "video_inputs": [
             {
@@ -44,38 +142,82 @@ def generate_video(lang: str, asset_id: str):
                     "avatar_style": "normal"
                 },
                 "voice": {
-                    "type": "audio",
-                    "audio_asset_id": asset_id
+                    "type": "text",
+                    "input_text": text,
+                    "voice_id": voice_id,
+                    "speed": 1.25
                 }
             }
         ],
-        "dimension": VIDEO_DIMENSIONS
+        "dimension": {"width": 1280, "height": 720}
     }
 
-    print(f"🎬 Generating {lang} base video...")
-    resp = requests.post(API_URL, headers=HEADERS, json=payload)
-
-    if resp.status_code == 200:
-        data = resp.json().get("data", {})
-        video_id = data.get("video_id")
-        print(f"✅ {lang} video started (ID: {video_id})")
-        return video_id
-    else:
-        print(f"❌ Failed for {lang}: {resp.status_code} - {resp.text}")
+    response = requests.post(url, headers=headers, json=payload)
+    if response.status_code != 200:
+        print(f"❌ Failed for {lang}: {response.status_code} - {response.text}")
         return None
 
+    result = response.json()
+    video_id = result.get("data", {}).get("video_id")
+    if not video_id:
+        print(f"⚠️ No video ID returned for {lang}: {result}")
+        return None
 
-def main():
-    for lang, info in LANG_AUDIO.items():
-        asset_id = info["audio_asset_id"]
-        if asset_id.startswith("PUT_"):
-            print(f"⚠️  Skipping {lang} (no asset ID configured)")
-            continue
-
-        vid = generate_video(lang, asset_id)
-        if vid:
-            print(f"🚀 Requested {lang} base video: {vid}\n")
+    print(f"✅ {lang.capitalize()} video request created! Video ID: {video_id}")
+    return video_id
 
 
+# ==========================================
+# POLL STATUS AND DOWNLOAD (v2 FIXED)
+# ==========================================
+def download_video(video_id, lang):
+    status_url = f"https://api.heygen.com/v1/video/status?video_id={video_id}"
+    headers = {"Authorization": f"Bearer {HEYGEN_API_KEY}"}
+
+    print(f"⏳ Waiting for {lang} video to render...")
+
+    for attempt in range(60):  # up to 10 minutes
+        time.sleep(10)
+        try:
+            r = requests.get(status_url, headers=headers, timeout=15)
+            if r.status_code != 200:
+                print(f"⚠️ [{lang}] Status check failed ({r.status_code}), retrying...")
+                continue
+
+            data = r.json().get("data", {})
+            status = data.get("status")
+            video_url = data.get("video_url")
+
+            print(f"🔍 [{lang}] Attempt {attempt+1}/60 → status: {status}")
+
+            # ✅ If video_url available (even if status says 'failed'), download it
+            if video_url:
+                output_path = os.path.join(OUTPUT_DIR, f"{lang}.mp4")
+                print(f"⬇️ [{lang}] Downloading from {video_url} ...")
+                try:
+                    video_data = requests.get(video_url, timeout=30).content
+                    with open(output_path, "wb") as f:
+                        f.write(video_data)
+                    print(f"✅ [{lang}] Video saved successfully → {output_path}")
+                except Exception as e:
+                    print(f"⚠️ [{lang}] Download issue: {e}")
+                return
+
+        except Exception as e:
+            print(f"⚠️ [{lang}] Network or JSON issue: {e}")
+            time.sleep(5)
+
+    print(f"⚠️ [{lang}] Timeout: video not ready even after 10 minutes.")
+
+
+# ==========================================
+# MAIN EXECUTION
+# ==========================================
 if __name__ == "__main__":
-    main()
+    for lang, customer in CUSTOMER_EXAMPLE.items():
+        text = TEMPLATES[lang].format(**customer)
+        voice_id = LANG_VOICE[lang]["voice_id"]
+        print(f"🎬 Generating {lang} base video...")
+        video_id = generate_video(lang, text, voice_id)
+        if video_id:
+            download_video(video_id, lang)

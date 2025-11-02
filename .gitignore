@@ -5,5 +5,7 @@ venv/
 env/
 env
 .env/
+.env
+__ENV__/    
 __pycache__/
 

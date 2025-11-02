@@ -1,6 +1,6 @@
-id,name,language,loan_account_number,loan_amount,emi_amount,due_date,bank_name,branch_name,ifsc,account_last4,phone_number
-1,Ramesh Kumar,hindi,LA-456789,250000,5750,06-Nov-2025,HDFC Bank,Andheri East,HDFC0001234,3210,+919876543210
-2,Lakshmi Devi,tamil,LA-987654,180000,4200,06-Nov-2025,SBI Bank,Mylapore,SBIN0001123,5678,+919812345678
-3,Amit Sharma,hindi,LA-112233,300000,6900,05-Nov-2025,ICICI Bank,Connaught Place,ICIC0000567,2233,+919700112233
-4,Suman Reddy,telugu,LA-445566,220000,5100,07-Nov-2025,Axis Bank,Banjara Hills,UTIB0000456,9876,+919812209876
-5,Priya Nair,kannada,LA-778899,195000,4550,09-Nov-2025,HDFC Bank,MG Road,HDFC0000678,8745,+919812398745
+id,name,language,loan_account_number,loan_amount,emi_amount,due_date,ifsc,account_last4
+1,Ramesh Kumar,hindi,LA-456789,250000,5750,06-Nov-2025,HDFC0001234,3210
+2,Lakshmi Devi,tamil,LA-987654,180000,4200,06-Nov-2025,SBIN0001123,5678
+3,Amit Sharma,hindi,LA-112233,300000,6900,05-Nov-2025,ICIC0000567,2233
+4,Suman Reddy,telugu,LA-445566,220000,5100,07-Nov-2025,UTIB0000456,9876
+5,Priya Nair,kannada,LA-778899,195000,4550,09-Nov-2025,HDFC0000678,8745
