@@ -1,0 +1,273 @@
+2025-11-01 12:11:15,447 [INFO] Starting generation...
+2025-11-01 12:11:15,532 [INFO] Created empty template for: penalty
+2025-11-01 12:11:15,532 [INFO] Templates ready.
+2025-11-01 12:11:15,603 [INFO] Saved 1_loan.png
+2025-11-01 12:11:15,634 [INFO] Saved 1_emi.png
+2025-11-01 12:11:15,673 [INFO] Saved 1_penalty.png
+2025-11-01 12:11:15,704 [INFO] Saved 2_loan.png
+2025-11-01 12:11:15,733 [INFO] Saved 2_emi.png
+2025-11-01 12:11:15,777 [INFO] Saved 2_penalty.png
+2025-11-01 12:11:15,811 [INFO] Saved 3_loan.png
+2025-11-01 12:11:15,843 [INFO] Saved 3_emi.png
+2025-11-01 12:11:15,892 [INFO] Saved 3_penalty.png
+2025-11-01 12:11:15,924 [INFO] Saved 4_loan.png
+2025-11-01 12:11:15,952 [INFO] Saved 4_emi.png
+2025-11-01 12:11:15,994 [INFO] Saved 4_penalty.png
+2025-11-01 12:11:16,033 [INFO] Saved 5_loan.png
+2025-11-01 12:11:16,067 [INFO] Saved 5_emi.png
+2025-11-01 12:11:16,118 [INFO] Saved 5_penalty.png
+2025-11-01 12:11:16,119 [INFO] \u2705 Done! Check assets\generated
+2025-11-01 12:11:45,110 [INFO] Starting generation...
+2025-11-01 12:11:45,172 [INFO] Created empty template for: penalty
+2025-11-01 12:11:45,172 [INFO] Templates ready.
+2025-11-01 12:11:45,207 [INFO] Saved 1_loan.png
+2025-11-01 12:11:45,235 [INFO] Saved 1_emi.png
+2025-11-01 12:11:45,274 [INFO] Saved 1_penalty.png
+2025-11-01 12:11:45,301 [INFO] Saved 2_loan.png
+2025-11-01 12:11:45,326 [INFO] Saved 2_emi.png
+2025-11-01 12:11:45,366 [INFO] Saved 2_penalty.png
+2025-11-01 12:11:45,394 [INFO] Saved 3_loan.png
+2025-11-01 12:11:45,421 [INFO] Saved 3_emi.png
+2025-11-01 12:11:45,462 [INFO] Saved 3_penalty.png
+2025-11-01 12:11:45,496 [INFO] Saved 4_loan.png
+2025-11-01 12:11:45,528 [INFO] Saved 4_emi.png
+2025-11-01 12:11:45,572 [INFO] Saved 4_penalty.png
+2025-11-01 12:11:45,606 [INFO] Saved 5_loan.png
+2025-11-01 12:11:45,642 [INFO] Saved 5_emi.png
+2025-11-01 12:11:45,701 [INFO] Saved 5_penalty.png
+2025-11-01 12:11:45,702 [INFO] \u2705 Done! Check assets\generated
+2025-11-01 12:11:54,793 [INFO] Starting generation...
+2025-11-01 12:11:54,865 [INFO] Created empty template for: penalty
+2025-11-01 12:11:54,865 [INFO] Templates ready.
+2025-11-01 12:11:54,901 [INFO] Saved 1_loan.png
+2025-11-01 12:11:54,930 [INFO] Saved 1_emi.png
+2025-11-01 12:11:54,971 [INFO] Saved 1_penalty.png
+2025-11-01 12:11:55,002 [INFO] Saved 2_loan.png
+2025-11-01 12:11:55,030 [INFO] Saved 2_emi.png
+2025-11-01 12:11:55,067 [INFO] Saved 2_penalty.png
+2025-11-01 12:11:55,103 [INFO] Saved 3_loan.png
+2025-11-01 12:11:55,141 [INFO] Saved 3_emi.png
+2025-11-01 12:11:55,190 [INFO] Saved 3_penalty.png
+2025-11-01 12:11:55,220 [INFO] Saved 4_loan.png
+2025-11-01 12:11:55,250 [INFO] Saved 4_emi.png
+2025-11-01 12:11:55,287 [INFO] Saved 4_penalty.png
+2025-11-01 12:11:55,320 [INFO] Saved 5_loan.png
+2025-11-01 12:11:55,346 [INFO] Saved 5_emi.png
+2025-11-01 12:11:55,385 [INFO] Saved 5_penalty.png
+2025-11-01 12:11:55,386 [INFO] \u2705 Done! Check assets\generated
+2025-11-01 14:01:08,258 [INFO] \u2705 Cards generated for 1 (hindi)
+2025-11-01 14:01:08,358 [INFO] \u2705 Cards generated for 2 (tamil)
+2025-11-01 14:01:08,444 [INFO] \u2705 Cards generated for 3 (hindi)
+2025-11-01 14:01:08,532 [INFO] \u2705 Cards generated for 4 (telugu)
+2025-11-01 14:01:08,622 [INFO] \u2705 Cards generated for 5 (kannada)
+2025-11-01 14:01:08,628 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:01:33,815 [INFO] \u2705 Cards generated for 1 (hindi)
+2025-11-01 14:01:33,910 [INFO] \u2705 Cards generated for 2 (tamil)
+2025-11-01 14:01:33,994 [INFO] \u2705 Cards generated for 3 (hindi)
+2025-11-01 14:01:34,082 [INFO] \u2705 Cards generated for 4 (telugu)
+2025-11-01 14:01:34,172 [INFO] \u2705 Cards generated for 5 (kannada)
+2025-11-01 14:01:34,172 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:03:55,167 [INFO] Downloaded NotoSansDevanagari-Regular.ttf
+2025-11-01 14:03:57,055 [INFO] Downloaded NotoSansTamil-Regular.ttf
+2025-11-01 14:04:01,608 [INFO] Downloaded NotoSansTelugu-Regular.ttf
+2025-11-01 14:04:04,272 [INFO] Downloaded NotoSansKannada-Regular.ttf
+2025-11-01 14:04:04,442 [INFO] \u2705 Generated cards for 1 (hindi)
+2025-11-01 14:04:04,571 [INFO] \u2705 Generated cards for 2 (tamil)
+2025-11-01 14:04:04,684 [INFO] \u2705 Generated cards for 3 (hindi)
+2025-11-01 14:04:04,872 [INFO] \u2705 Generated cards for 4 (telugu)
+2025-11-01 14:04:05,011 [INFO] \u2705 Generated cards for 5 (kannada)
+2025-11-01 14:04:05,012 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:09:42,525 [INFO] Created template: penalty
+2025-11-01 14:09:42,633 [INFO] \u2705 Generated cards for 1 (hindi)
+2025-11-01 14:09:42,764 [INFO] \u2705 Generated cards for 2 (tamil)
+2025-11-01 14:09:42,902 [INFO] \u2705 Generated cards for 3 (hindi)
+2025-11-01 14:09:43,022 [INFO] \u2705 Generated cards for 4 (telugu)
+2025-11-01 14:09:43,146 [INFO] \u2705 Generated cards for 5 (kannada)
+2025-11-01 14:09:43,146 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:11:19,743 [INFO] Pasted logo onto card
+2025-11-01 14:11:19,782 [INFO] Pasted logo onto card
+2025-11-01 14:11:19,817 [INFO] Pasted logo onto card
+2025-11-01 14:11:19,866 [INFO] \u2705 Generated cards for 1 (hindi)
+2025-11-01 14:11:19,875 [INFO] Pasted logo onto card
+2025-11-01 14:11:19,909 [INFO] Pasted logo onto card
+2025-11-01 14:11:19,953 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,002 [INFO] \u2705 Generated cards for 2 (tamil)
+2025-11-01 14:11:20,011 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,033 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,074 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,132 [INFO] \u2705 Generated cards for 3 (hindi)
+2025-11-01 14:11:20,141 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,174 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,217 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,272 [INFO] \u2705 Generated cards for 4 (telugu)
+2025-11-01 14:11:20,282 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,305 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,343 [INFO] Pasted logo onto card
+2025-11-01 14:11:20,388 [INFO] \u2705 Generated cards for 5 (kannada)
+2025-11-01 14:11:20,388 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:12:35,496 [INFO] Created template: loan
+2025-11-01 14:12:35,561 [INFO] Created template: emi
+2025-11-01 14:12:35,623 [INFO] Created template: penalty
+2025-11-01 14:12:35,644 [INFO] Pasted logo onto card
+2025-11-01 14:12:35,691 [INFO] Pasted logo onto card
+2025-11-01 14:12:35,732 [INFO] Pasted logo onto card
+2025-11-01 14:12:35,762 [INFO] \u2705 Generated cards for 1 (hindi)
+2025-11-01 14:12:35,778 [INFO] Pasted logo onto card
+2025-11-01 14:12:35,821 [INFO] Pasted logo onto card
+2025-11-01 14:12:35,862 [INFO] Pasted logo onto card
+2025-11-01 14:12:35,902 [INFO] \u2705 Generated cards for 2 (tamil)
+2025-11-01 14:12:35,933 [INFO] Pasted logo onto card
+2025-11-01 14:12:35,984 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,032 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,072 [INFO] \u2705 Generated cards for 3 (hindi)
+2025-11-01 14:12:36,093 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,132 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,172 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,204 [INFO] \u2705 Generated cards for 4 (telugu)
+2025-11-01 14:12:36,220 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,253 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,312 [INFO] Pasted logo onto card
+2025-11-01 14:12:36,352 [INFO] \u2705 Generated cards for 5 (kannada)
+2025-11-01 14:12:36,357 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:18:36,811 [INFO] Pasted logo onto card
+2025-11-01 14:18:36,843 [INFO] Pasted logo onto card
+2025-11-01 14:18:36,872 [INFO] Pasted logo onto card
+2025-11-01 14:18:36,912 [INFO] \u2705 Generated cards for 1 (hindi)
+2025-11-01 14:18:36,929 [INFO] Pasted logo onto card
+2025-11-01 14:18:36,952 [INFO] Pasted logo onto card
+2025-11-01 14:18:36,983 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,027 [INFO] \u2705 Generated cards for 2 (tamil)
+2025-11-01 14:18:37,035 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,055 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,082 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,121 [INFO] \u2705 Generated cards for 3 (hindi)
+2025-11-01 14:18:37,131 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,161 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,202 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,246 [INFO] \u2705 Generated cards for 4 (telugu)
+2025-11-01 14:18:37,262 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,281 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,318 [INFO] Pasted logo onto card
+2025-11-01 14:18:37,382 [INFO] \u2705 Generated cards for 5 (kannada)
+2025-11-01 14:18:37,382 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:20:09,701 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,720 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,748 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,792 [INFO] \u2705 Generated cards for 1 (hindi)
+2025-11-01 14:20:09,792 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,818 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,847 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,889 [INFO] \u2705 Generated cards for 2 (tamil)
+2025-11-01 14:20:09,892 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,912 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,947 [INFO] Pasted logo onto card
+2025-11-01 14:20:09,982 [INFO] \u2705 Generated cards for 3 (hindi)
+2025-11-01 14:20:09,989 [INFO] Pasted logo onto card
+2025-11-01 14:20:10,004 [INFO] Pasted logo onto card
+2025-11-01 14:20:10,032 [INFO] Pasted logo onto card
+2025-11-01 14:20:10,071 [INFO] \u2705 Generated cards for 4 (telugu)
+2025-11-01 14:20:10,079 [INFO] Pasted logo onto card
+2025-11-01 14:20:10,097 [INFO] Pasted logo onto card
+2025-11-01 14:20:10,122 [INFO] Pasted logo onto card
+2025-11-01 14:20:10,161 [INFO] \u2705 Generated cards for 5 (kannada)
+2025-11-01 14:20:10,162 [INFO] \U0001f389 All cards saved in assets\generated
+2025-11-01 14:25:32,052 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 14:25:32,139 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 14:25:32,244 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 14:25:32,336 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 14:25:32,434 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 14:25:32,434 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 14:27:14,962 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 14:27:15,022 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 14:27:15,104 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 14:27:15,182 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 14:27:15,251 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 14:27:15,252 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 14:31:18,571 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 14:31:18,634 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 14:31:18,705 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 14:31:18,773 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 14:31:18,831 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 14:31:18,832 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 14:32:35,108 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 14:32:35,182 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 14:32:35,254 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 14:32:35,306 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 14:32:35,381 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 14:32:35,386 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 14:32:47,573 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 14:32:47,642 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 14:32:47,722 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 14:32:47,822 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 14:32:47,906 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 14:32:47,906 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 14:32:56,765 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 14:32:56,814 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 14:32:56,871 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 14:32:56,948 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 14:32:57,008 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 14:32:57,008 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 14:33:03,334 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 14:33:03,432 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 14:33:03,485 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 14:33:03,553 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 14:33:03,613 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 14:33:03,613 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:42:53,171 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 23:42:53,373 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 23:42:53,569 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 23:42:53,761 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 23:43:23,421 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 23:43:23,618 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 23:43:23,780 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 23:43:23,959 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 23:43:24,145 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 23:43:24,147 [INFO] \U0001f389 All cards generated successfully!
+2025-11-01 23:43:51,561 [INFO] \U0001f389 All cards generated successfully!
+2025-11-01 23:44:09,781 [INFO] \U0001f389 All cards generated successfully!
+2025-11-01 23:47:16,833 [INFO] \u2705 Generated all cards for 1 (hindi)
+2025-11-01 23:47:17,020 [INFO] \u2705 Generated all cards for 2 (tamil)
+2025-11-01 23:47:17,209 [INFO] \u2705 Generated all cards for 3 (hindi)
+2025-11-01 23:47:17,422 [INFO] \u2705 Generated all cards for 4 (telugu)
+2025-11-01 23:47:17,593 [INFO] \u2705 Generated all cards for 5 (kannada)
+2025-11-01 23:47:17,594 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:47:36,780 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:47:46,402 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:48:45,210 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:49:02,802 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:50:19,553 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:50:54,571 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:51:12,164 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:51:21,781 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:51:29,930 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:51:36,720 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:51:50,010 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:52:11,353 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:52:18,823 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:52:25,251 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:52:31,766 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:52:39,537 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:52:54,344 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:53:03,315 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:53:14,414 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:53:21,039 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:53:31,636 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:53:42,253 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:53:56,351 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:54:02,653 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:54:13,634 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:54:19,339 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:54:27,102 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:54:32,948 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:55:03,030 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:55:11,053 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:55:19,666 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:55:31,029 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:55:52,472 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:56:02,623 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:56:12,526 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:56:18,213 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:56:32,715 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:56:38,468 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:56:44,344 [INFO] \U0001f389 All cards saved to assets\generated
+2025-11-01 23:56:52,250 [INFO] \U0001f389 All cards saved to assets\generated
