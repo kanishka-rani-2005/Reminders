@@ -85,9 +85,9 @@ def generate_cards(row):
     # --- Card 1: Loan details ---
     img1 = Image.open(TEMPLATES / templates[0]).convert("RGBA")
     draw = ImageDraw.Draw(img1)
-    draw_value(draw, (750, 325), name)
-    draw_value(draw, (750, 405), loan_account)
-    draw_value(draw, (750, 485), loan_amount)
+    draw_value(draw, (650, 325), name)
+    draw_value(draw, (650, 405), loan_account)
+    draw_value(draw, (650, 485), loan_amount)
     img1.save(GENERATED / f"{cid}_loan.png")
 
     # --- Card 2: EMI details ---

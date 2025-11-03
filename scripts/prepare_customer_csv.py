@@ -1,104 +1,87 @@
-# import pandas as pd, os, re, datetime, logging, traceback
+import os
+import pandas as pd
+from datetime import datetime, timedelta
 
-# RAW_PATH = "data/customers_raw.csv"
-# OUT_PATH = "data/customers_master.csv"
-# LOG_PATH = "logs/data_validation.log"
+# ============================================
+# CONFIGURATION
+# ============================================
+DATA_DIR = "data"   # Folder containing all language CSVs
+OUTPUT_FILE = os.path.join(DATA_DIR, "customers_master.csv")
 
-# # Create necessary folders
-# os.makedirs("logs", exist_ok=True)
+# Map original column names to standardized names
+COLUMN_MAP = {
+    "LOAN ACCOUNT NO": "loan_account_number",
+    "CUSTOMER NAME": "name",
+    "SANCTIONED LOAN AMOUNT": "loan_amount",
+    "EFFECTIVE INSTALLMENT AMOUNT": "emi_amount",
+    "IFSC Code": "ifsc",
+    "Account Last 4 Digits": "account_last4"
+}
 
-# # Configure logging
-# logging.basicConfig(
-#     filename=LOG_PATH,
-#     level=logging.INFO,
-#     format="%(asctime)s [%(levelname)s] %(message)s"
-# )
 
-# def validate_phone(phone):
-#     """Validate and auto-fix Indian phone numbers."""
-#     phone = str(phone).strip().replace(" ", "").replace("\u202f", "").replace("\xa0", "")
-#     if phone.startswith("91") and not phone.startswith("+91"):
-#         phone = "+" + phone
-#     if re.match(r"^\+91\d{10}$", phone):
-#         return True, phone
-#     return False, phone
+# ============================================
+# FUNCTION: Process a single language CSV
+# ============================================
+def process_language_csv(filepath: str, language: str) -> pd.DataFrame:
+    """Reads and standardizes a language CSV file."""
+    df = pd.read_csv(filepath)
 
-# def validate_date(date_str):
-#     try:
-#         datetime.datetime.strptime(date_str, "%d-%b-%Y")
-#         return True
-#     except Exception:
-#         return False
+    # Rename columns to standardized names
+    df.rename(columns=COLUMN_MAP, inplace=True)
 
-# def prepare_customer_csv():
-#     try:
-#         logging.info("=== Starting Data Preparation ===")
-#         print(f"📥 Reading {RAW_PATH} ...")
+    # Add language column
+    df["language"] = language
 
-#         if not os.path.exists(RAW_PATH):
-#             logging.error(f"❌ File not found: {RAW_PATH}")
-#             print(f"❌ File not found: {RAW_PATH}")
-#             return
+    # Add next 5th of month as due date
+    next_due = datetime.now().replace(day=5)
+    if next_due < datetime.now():
+        next_due += timedelta(days=30)
+    df["due_date"] = next_due.strftime("%d-%b-%Y")
 
-#         df = pd.read_csv(RAW_PATH)
-#         logging.info(f"File loaded successfully: {RAW_PATH} ({len(df)} rows)")
-#         df.columns = [c.strip().lower() for c in df.columns]
-#         print("Columns:", list(df.columns))
-#         logging.info(f"Columns detected: {list(df.columns)}")
+    # Keep only relevant columns (in desired order)
+    df = df[[
+        "name", "language", "loan_account_number",
+        "loan_amount", "emi_amount", "due_date", "ifsc", "account_last4"
+    ]]
+    return df
 
-#         required_cols = [
-#             "id","name","language","loan_amount","emi_amount","due_date",
-#             "bank_name","branch_name","ifsc","phone_number"
-#         ]
-#         for col in required_cols:
-#             if col not in df.columns:
-#                 df[col] = ""
-#                 logging.warning(f"Missing column '{col}' added as empty")
 
-#         valid_langs = {"hindi", "tamil", "telugu", "kannada"}
-#         valid_rows = []
+# ============================================
+# FUNCTION: Merge all CSVs into one master file
+# ============================================
+def create_master_csv():
+    combined = []
 
-#         for _, r in df.iterrows():
-#             errors = []
+    for lang_file in os.listdir(DATA_DIR):
+        if lang_file.endswith(".csv") and lang_file != "customers_master.csv":
+            language = lang_file.replace(".csv", "")
+            filepath = os.path.join(DATA_DIR, lang_file)
+            print(f"📂 Processing {filepath} ...")
+            combined.append(process_language_csv(filepath, language))
 
-#             if not isinstance(r["name"], str) or not r["name"].replace(" ", "").isalpha():
-#                 errors.append("Invalid name")
+    if not combined:
+        print("⚠️ No CSV files found in 'data' directory.")
+        return
 
-#             if str(r["language"]).lower() not in valid_langs:
-#                 errors.append(f"Invalid language ({r['language']})")
+    master_df = pd.concat(combined, ignore_index=True)
 
-#             if not str(r["loan_amount"]).isdigit() or int(r["loan_amount"]) <= 0:
-#                 errors.append("Invalid loan_amount")
+    # Add incremental ID
+    master_df.insert(0, "id", range(1, len(master_df) + 1))
 
-#             if not str(r["emi_amount"]).isdigit() or int(r["emi_amount"]) <= 0:
-#                 errors.append("Invalid emi_amount")
+    # Save to master CSV
+    master_df.to_csv(OUTPUT_FILE, index=False)
+    print(f"\n✅ Master CSV successfully created at: {OUTPUT_FILE}")
 
-#             if not validate_date(str(r["due_date"])):
-#                 errors.append(f"Invalid due_date ({r['due_date']})")
 
-#             ok_phone, fixed_phone = validate_phone(r["phone_number"])
-#             if not ok_phone:
-#                 errors.append(f"Invalid phone_number ({r['phone_number']})")
-#             else:
-#                 r["phone_number"] = fixed_phone
+# ============================================
+# MAIN EXECUTION
+# ============================================
+def main():
+    print("🚀 Starting preprocessing of language CSVs...\n")
+    os.makedirs(DATA_DIR, exist_ok=True)
+    create_master_csv()
+    print("\n🎯 Processing complete!")
 
-#             if errors:
-#                 print(f"❌ Row {r.get('id', '?')} skipped → {errors}")
-#                 logging.info(f"Row {r.get('id', '?')} skipped: {errors}")
-#                 continue
 
-#             valid_rows.append(r)
-
-#         clean_df = pd.DataFrame(valid_rows)
-#         clean_df.to_csv(OUT_PATH, index=False)
-#         print(f"✅ Cleaned CSV saved: {OUT_PATH} ({len(clean_df)} valid rows)")
-#         logging.info(f"✅ Cleaned CSV saved successfully ({len(clean_df)} valid rows)")
-#         logging.info("=== Data Preparation Completed ===")
-
-#     except Exception as e:
-#         print("❌ Unexpected error occurred. Check logs for details.")
-#         logging.error(f"Unhandled exception: {e}")
-#         logging.error(traceback.format_exc())
-
-# if __name__ == "__main__":
-#     prepare_customer_csv()
+if __name__ == "__main__":
+    main()
