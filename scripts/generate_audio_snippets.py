@@ -126,4 +126,4 @@ def process_csv(csv_path, output_dir="output_dynamic_speech"):
 # 🚀 MAIN
 # ==================================================
 if __name__ == "__main__":
-    process_csv("data/customers_master.csv")
+    process_csv("data/customers_master_spoken.csv")
