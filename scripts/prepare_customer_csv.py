@@ -2,9 +2,7 @@ import os
 import pandas as pd
 from datetime import datetime, timedelta
 
-# ============================================
-# CONFIGURATION
-# ============================================
+
 DATA_DIR = "data"   # Folder containing all language CSVs
 OUTPUT_FILE = os.path.join(DATA_DIR, "customers_master.csv")
 
