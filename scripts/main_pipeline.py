@@ -6,8 +6,11 @@ SCRIPTS_DIR = "scripts"
 STEPS = [
     "prepare_customer_csv.py",      
     "generate_audio_snippets.py",
-    "generate_cards.py",         
-    "compose_videos.py"           
+    "generate_cards.py",  
+    'merge_audio.py', 
+    "seperate_base_videos.py",      
+    "complete_video.py",
+    "join_audios.py",
 ]
 
 def run_pipeline():

@@ -1,0 +1,2 @@
+file 'E:\OneDrive\Desktop\Reminders\output_2clips\1_hindi\01_hindi.mp3'
+file 'E:\OneDrive\Desktop\Reminders\output_2clips\1_hindi\02_hindi.mp3'
