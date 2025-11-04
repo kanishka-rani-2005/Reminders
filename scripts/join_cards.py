@@ -11,8 +11,7 @@ IMAGE1 = "assets/static/1.jpg"
 IMAGE2 = "assets/static/Hindi_Card_3.jpg"
 
 # ✅ Toggle Test Mode
-TEST_MODE = True  # 👈 Set to False to process all customers
-
+TEST_MODE = False  # 👈 Set to False to process all customers
 
 def apply_templates_with_ffmpeg(input_video, output_video, image1, image2):
     """Applies two overlays to a single video using ffmpeg."""
@@ -63,7 +62,6 @@ def main():
 
     df = pd.read_csv(DATA_PATH)
 
-    # Extract IDs
     if "id" in df.columns:
         ids = df["id"].astype(str).tolist()
     elif "ID" in df.columns:
@@ -74,12 +72,10 @@ def main():
     print(f"🧾 Found {len(ids)} customers in CSV")
 
     if TEST_MODE:
-        # 🧪 Run only for one specific ID
         test_id = ids[0]
         print(f"\n🧪 TEST MODE ON → Running only for ID: {test_id}")
         process_customer(test_id)
     else:
-        # 🚀 Run for all customers
         for cid in ids:
             process_customer(cid)
 

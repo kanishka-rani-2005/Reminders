@@ -107,7 +107,7 @@ def main():
 # =============================
 # ENTRY POINT
 # =============================
-TEST_MODE = True  # 👈 Set to False to run for all customers
+TEST_MODE = False  # 👈 Set to False to run for all customers
 
 if __name__ == "__main__":
     main()

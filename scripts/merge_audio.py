@@ -92,7 +92,7 @@ def compose_customer_video(customer_id, lang):
 # MAIN LOGIC WITH IF-ELSE
 # -------------------------------------------
 if __name__ == "__main__":
-    TEST_MODE = True   # 👈 change this to False to run for all customers
+    TEST_MODE = False   # 👈 change this to False to run for all customers
 
     if TEST_MODE:
         # 🧪 Run only for one specific ID (for testing)
