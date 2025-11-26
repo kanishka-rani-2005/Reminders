@@ -6,6 +6,10 @@ env/
 env
 .env/
 .env
+.logs
+.logs/
+logs/
+logs
 __ENV__/    
 __pycache__/
 
