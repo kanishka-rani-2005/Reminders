@@ -12,7 +12,7 @@ DATA_CSV = ROOT / "data" / "customers_master.csv"
 GENERATED = ROOT / "assets" / "generated"
 BASE_VIDEOS_DIR = ROOT / "assets" / "base_videos"
 STATIC_DIR = ROOT / "assets" / "static"
-OUTPUT_DIR = GENERATED
+OUTPUT_DIR = ROOT / "assets" / "generated_videos"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 TSPEC = "c1=0:06-0:12, c2=0:12-0:21 , c3=0:23-0:47"
@@ -84,8 +84,8 @@ def get_video_dimensions(video_path: Path):
 
 # ---------- parse tspec ----------
 slots = parse_tspec(TSPEC)
-c1_start, c1_end = slots["c1"]
-c2_start, c2_end = slots["c2"]
+c1_start, c1_end = slots.get("c1", (None, None))
+c2_start, c2_end = slots.get("c2", (None, None))
 c3_start, c3_end = slots.get("c3", (None, None))
 
 print(f"Using slots: c1={c1_start}-{c1_end}, c2={c2_start}-{c2_end}, c3={c3_start}-{c3_end}")
@@ -96,21 +96,17 @@ rows = df.to_dict(orient="records")
 if not rows:
     sys.exit("No rows found in CSV")
 
-# ---------- group by language ----------
+# group by language (so we can reuse base video/static per language)
 by_lang = defaultdict(list)
 for r in rows:
     lang = (r.get("language") or "english").strip()
     by_lang[lang].append(r)
 
-# ---------- process only Hindi ----------
+# ---------- process each language group ----------
 for lang, recs in by_lang.items():
-    if lang.lower() != "hindi":
-        print(f"Skipping non-Hindi language: {lang}")
-        continue
+    print(f"\nLanguage group: '{lang}' ({len(recs)} customers)")
 
-    print(f"\nProcessing language '{lang}' with {len(recs)} rows")
-
-    # find base video
+    # locate base video (try common casings)
     candidates = [
         BASE_VIDEOS_DIR / f"{lang}.mp4",
         BASE_VIDEOS_DIR / f"{lang.capitalize()}.mp4",
@@ -119,16 +115,16 @@ for lang, recs in by_lang.items():
     ]
     base_vid = next((c for c in candidates if c.exists()), None)
     if base_vid is None:
-        print(f"No base video for '{lang}'")
+        print(f"  No base video found for language '{lang}', skipping all customers in this language.")
         continue
 
-    print(f"Using base video: {base_vid}")
+    try:
+        vid_w, vid_h = get_video_dimensions(base_vid)
+    except Exception as e:
+        print(f"  Failed to probe base video: {e}")
+        continue
 
-    # probe video size
-    vid_w, vid_h = get_video_dimensions(base_vid)
-    print(f"Video size = {vid_w} x {vid_h}")
-
-    # static c3 card
+    # static c3 card (language-level)
     static_candidates = [
         STATIC_DIR / f"{lang}_Card_3.jpg",
         STATIC_DIR / f"{lang.capitalize()}_Card_3.jpg",
@@ -136,81 +132,95 @@ for lang, recs in by_lang.items():
         STATIC_DIR / f"{lang.upper()}_Card_3.jpg",
     ]
     static_card = next((c for c in static_candidates if c.exists()), None)
+    if static_card:
+        print(f"  Found static c3 card: {static_card}")
 
-    # overlays list
-    overlays = []
+    # ---------- per-customer processing ----------
     for r in recs:
-        id_ = str(r.get("id"))
+        id_raw = r.get("id") or ""
+        id_ = str(id_raw).strip()
+        if not id_:
+            print("  Skipping a row with empty id")
+            continue
+
+        print(f"  Customer id={id_} ...")
+
+        # customer-specific overlays
+        overlays = []
         loan_img = GENERATED / f"{id_}_loan.png"
         emi_img = GENERATED / f"{id_}_emi.png"
 
-        if loan_img.exists():
+        if loan_img.exists() and c1_start is not None:
             overlays.append({"img": str(loan_img), "start": c1_start, "end": c1_end})
-        if emi_img.exists():
+            print("    found loan overlay")
+        if emi_img.exists() and c2_start is not None:
             overlays.append({"img": str(emi_img), "start": c2_start, "end": c2_end})
+            print("    found emi overlay")
 
-    if c3_start and static_card:
-        overlays.append({"img": str(static_card), "start": c3_start, "end": c3_end})
+        # add language-level static c3 if present
+        if static_card and c3_start is not None:
+            overlays.append({"img": str(static_card), "start": c3_start, "end": c3_end})
+            print("    added static c3 card")
 
-    if not overlays:
-        print("No overlays found")
-        continue
+        # output file per customer
+        out_file = OUTPUT_DIR / f"{lang.lower()}_{id_}_video.mp4"
 
-    # ffmpeg input list
-    ff_inputs = [str(base_vid)] + [ov["img"] for ov in overlays]
+        # If no overlays, just fast-copy the base video so every customer gets a file
+        if not overlays:
+            print("    No overlays for this customer; copying base video to output (fast).")
+            cmd = ["ffmpeg", "-y", "-i", str(base_vid), "-c", "copy", str(out_file)]
+            proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if proc.returncode != 0:
+                print(f"    Failed to copy base video for id={id_}:")
+                print(proc.stderr.decode()[:1000])
+            else:
+                print(f"    Wrote (copy): {out_file}")
+            continue
 
-    # Build filter_complex
-    filter_parts = []
-    last = "[0:v]"   # Start with base video
-    tmp_idx = 0
-    input_idx = 1
+        # Build ffmpeg inputs: base video + per-overlay inputs
+        ff_inputs = [str(base_vid)] + [ov["img"] for ov in overlays]
 
-    for ov in overlays:
-        img_label = f"[{input_idx}:v]"
-        enable = f"between(t,{ov['start']},{ov['end']})"
+        # Build filter_complex; we will scale each overlay to video dims and overlay sequentially
+        filter_parts = []
+        last = "[0:v]"
+        tmp_idx = 0
+        input_idx = 1
 
-        # 1️⃣ FORCE SCALE card to EXACT video width and height
-        # This ensures it fits the full video, not just top right.
-        filter_parts.append(
-            f"{img_label}scale={vid_w}:{vid_h}[fg{tmp_idx}]"
-        )
+        for ov in overlays:
+            img_label = f"[{input_idx}:v]"
+            enable = f"between(t,{ov['start']},{ov['end']})"
+            filter_parts.append(f"{img_label}scale={vid_w}:{vid_h}[fg{tmp_idx}]")
+            filter_parts.append(f"{last}[fg{tmp_idx}]overlay=0:0:enable='{enable}'[tmp{tmp_idx}]")
+            last = f"[tmp{tmp_idx}]"
+            tmp_idx += 1
+            input_idx += 1
 
-        # 2️⃣ OVERLAY Image ON TOP of Video
-        # [base_video][card_image]overlay -> Card covers video
-        # overlay=0:0 forces top-left alignment
-        filter_parts.append(
-            f"{last}[fg{tmp_idx}]overlay=0:0:enable='{enable}'[tmp{tmp_idx}]"
-        )
+        filter_complex = ";".join(filter_parts)
 
-        last = f"[tmp{tmp_idx}]"
-        tmp_idx += 1
-        input_idx += 1
+        # Build ffmpeg command
+        cmd = ["ffmpeg", "-y"]
+        for inp in ff_inputs:
+            cmd += ["-i", inp]
 
-    filter_complex = ";".join(filter_parts)
-    out_file = OUTPUT_DIR / f"{base_vid.stem.lower()}_with_cards.mp4"
+        cmd += [
+            "-filter_complex", filter_complex,
+            "-map", last,
+            "-map", "0:a?",
+            "-c:v", FF_VCODEC,
+            "-crf", FF_CRf,
+            "-preset", FF_PRESET,
+            "-c:a", FF_AUDIO_CODEC,
+            "-b:a", FF_AUDIO_BITRATE,
+            str(out_file)
+        ]
 
-    cmd = ["ffmpeg", "-y"]
-    for inp in ff_inputs:
-        cmd += ["-i", inp]
-
-    cmd += [
-        "-filter_complex", filter_complex,
-        "-map", last,
-        "-map", "0:a?",
-        "-c:v", FF_VCODEC,
-        "-crf", FF_CRf,
-        "-preset", FF_PRESET,
-        "-c:a", FF_AUDIO_CODEC,
-        "-b:a", FF_AUDIO_BITRATE,
-        str(out_file)
-    ]
-
-    print("Running ffmpeg...")
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if proc.returncode != 0:
-        print(proc.stderr.decode()[:5000])
-        print("FFMPEG FAILED")
-    else:
-        print(f"Wrote: {out_file}")
+        # run
+        proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if proc.returncode != 0:
+            print(f"    FFMPEG FAILED for id={id_}:")
+            # show a snippet of stderr for debugging
+            print(proc.stderr.decode()[:2000])
+        else:
+            print(f"    Wrote: {out_file}")
 
 print("\nAll done.")

@@ -1,0 +1,73 @@
+2025-12-04 00:24:40,710 [INFO] Loaded 16 rows from data/customers_master.csv
+2025-12-04 00:24:40,713 [INFO] Processing id=1 lang=hindi
+2025-12-04 00:24:40,828 [INFO] Wrote final loan image: assets\generated\1_loan.png
+2025-12-04 00:24:40,870 [INFO] Wrote final EMI image: assets\generated\1_emi.png
+2025-12-04 00:24:40,870 [INFO] Processing id=2 lang=hindi
+2025-12-04 00:24:40,924 [INFO] Wrote final loan image: assets\generated\2_loan.png
+2025-12-04 00:24:40,954 [INFO] Wrote final EMI image: assets\generated\2_emi.png
+2025-12-04 00:24:40,954 [INFO] Processing id=3 lang=hindi
+2025-12-04 00:24:40,990 [INFO] Wrote final loan image: assets\generated\3_loan.png
+2025-12-04 00:24:41,030 [INFO] Wrote final EMI image: assets\generated\3_emi.png
+2025-12-04 00:24:41,035 [INFO] Processing id=4 lang=hindi
+2025-12-04 00:24:41,061 [INFO] Wrote final loan image: assets\generated\4_loan.png
+2025-12-04 00:24:41,103 [INFO] Wrote final EMI image: assets\generated\4_emi.png
+2025-12-04 00:24:41,103 [INFO] Processing id=5 lang=kannada
+2025-12-04 00:24:41,140 [INFO] Wrote final loan image: assets\generated\5_loan.png
+2025-12-04 00:24:41,191 [INFO] Wrote final EMI image: assets\generated\5_emi.png
+2025-12-04 00:24:41,191 [INFO] Processing id=6 lang=kannada
+2025-12-04 00:24:41,238 [INFO] Wrote final loan image: assets\generated\6_loan.png
+2025-12-04 00:24:41,276 [INFO] Wrote final EMI image: assets\generated\6_emi.png
+2025-12-04 00:24:41,278 [INFO] Processing id=7 lang=kannada
+2025-12-04 00:24:41,310 [INFO] Wrote final loan image: assets\generated\7_loan.png
+2025-12-04 00:24:41,350 [INFO] Wrote final EMI image: assets\generated\7_emi.png
+2025-12-04 00:24:41,350 [INFO] Processing id=8 lang=kannada
+2025-12-04 00:24:41,380 [INFO] Wrote final loan image: assets\generated\8_loan.png
+2025-12-04 00:24:41,416 [INFO] Wrote final EMI image: assets\generated\8_emi.png
+2025-12-04 00:24:41,416 [INFO] Processing id=9 lang=tamil
+2025-12-04 00:24:41,446 [INFO] Wrote final loan image: assets\generated\9_loan.png
+2025-12-04 00:24:41,482 [INFO] Wrote final EMI image: assets\generated\9_emi.png
+2025-12-04 00:24:41,482 [INFO] Processing id=10 lang=tamil
+2025-12-04 00:24:41,520 [INFO] Wrote final loan image: assets\generated\10_loan.png
+2025-12-04 00:24:41,558 [INFO] Wrote final EMI image: assets\generated\10_emi.png
+2025-12-04 00:24:41,558 [INFO] Processing id=11 lang=tamil
+2025-12-04 00:24:41,591 [INFO] Wrote final loan image: assets\generated\11_loan.png
+2025-12-04 00:24:41,632 [INFO] Wrote final EMI image: assets\generated\11_emi.png
+2025-12-04 00:24:41,634 [INFO] Processing id=12 lang=tamil
+2025-12-04 00:24:41,661 [INFO] Wrote final loan image: assets\generated\12_loan.png
+2025-12-04 00:24:41,702 [INFO] Wrote final EMI image: assets\generated\12_emi.png
+2025-12-04 00:24:41,702 [INFO] Processing id=13 lang=telugu
+2025-12-04 00:24:41,736 [INFO] Wrote final loan image: assets\generated\13_loan.png
+2025-12-04 00:24:41,773 [INFO] Wrote final EMI image: assets\generated\13_emi.png
+2025-12-04 00:24:41,776 [INFO] Processing id=14 lang=telugu
+2025-12-04 00:24:41,795 [INFO] Wrote final loan image: assets\generated\14_loan.png
+2025-12-04 00:24:41,831 [INFO] Wrote final EMI image: assets\generated\14_emi.png
+2025-12-04 00:24:41,831 [INFO] Processing id=15 lang=telugu
+2025-12-04 00:24:41,860 [INFO] Wrote final loan image: assets\generated\15_loan.png
+2025-12-04 00:24:41,895 [INFO] Wrote final EMI image: assets\generated\15_emi.png
+2025-12-04 00:24:41,895 [INFO] Processing id=16 lang=telugu
+2025-12-04 00:24:41,925 [INFO] Wrote final loan image: assets\generated\16_loan.png
+2025-12-04 00:24:41,950 [INFO] Wrote final EMI image: assets\generated\16_emi.png
+2025-12-04 00:24:41,957 [INFO] All done. Check assets/generated/ and logs/card_generation.log
+2025-12-04 00:27:42,501 [INFO] Loaded 7 rows from data/customers_master.csv
+2025-12-04 00:27:42,503 [INFO] Processing id=1 lang=hindi
+2025-12-04 00:27:42,632 [INFO] Wrote final loan image: assets\generated\1_loan.png
+2025-12-04 00:27:42,694 [INFO] Wrote final EMI image: assets\generated\1_emi.png
+2025-12-04 00:27:42,694 [INFO] Processing id=2 lang=hindi
+2025-12-04 00:27:42,722 [INFO] Wrote final loan image: assets\generated\2_loan.png
+2025-12-04 00:27:42,752 [INFO] Wrote final EMI image: assets\generated\2_emi.png
+2025-12-04 00:27:42,755 [INFO] Processing id=3 lang=kannada
+2025-12-04 00:27:42,786 [INFO] Wrote final loan image: assets\generated\3_loan.png
+2025-12-04 00:27:42,820 [INFO] Wrote final EMI image: assets\generated\3_emi.png
+2025-12-04 00:27:42,821 [INFO] Processing id=4 lang=tamil
+2025-12-04 00:27:42,849 [INFO] Wrote final loan image: assets\generated\4_loan.png
+2025-12-04 00:27:42,890 [INFO] Wrote final EMI image: assets\generated\4_emi.png
+2025-12-04 00:27:42,890 [INFO] Processing id=5 lang=tamil
+2025-12-04 00:27:42,920 [INFO] Wrote final loan image: assets\generated\5_loan.png
+2025-12-04 00:27:42,953 [INFO] Wrote final EMI image: assets\generated\5_emi.png
+2025-12-04 00:27:42,953 [INFO] Processing id=6 lang=telugu
+2025-12-04 00:27:43,000 [INFO] Wrote final loan image: assets\generated\6_loan.png
+2025-12-04 00:27:43,072 [INFO] Wrote final EMI image: assets\generated\6_emi.png
+2025-12-04 00:27:43,079 [INFO] Processing id=7 lang=telugu
+2025-12-04 00:27:43,122 [INFO] Wrote final loan image: assets\generated\7_loan.png
+2025-12-04 00:27:43,262 [INFO] Wrote final EMI image: assets\generated\7_emi.png
+2025-12-04 00:27:43,262 [INFO] All done. Check assets/generated/ and logs/card_generation.log
