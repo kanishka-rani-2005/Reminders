@@ -15,7 +15,7 @@ STATIC_DIR = ROOT / "assets" / "static"
 OUTPUT_DIR = GENERATED
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-TSPEC = "c1=0:08-0:11, c2=0:12-0:21 , c3=0:23-0:47"
+TSPEC = "c1=0:06-0:12, c2=0:12-0:21 , c3=0:23-0:47"
 
 FF_VCODEC = "libx264"
 FF_CRf = "20"
